@@ -1,0 +1,37 @@
+======================================================
+O ROBO SUPREMO: MOTOR DE BASE DE DADOS + PDF
+======================================================
+
+Como me pediu, desenvolvi a Versao Suprema! 
+Este programa contem a "inteligencia" de leitura de tabelas dinamicas 
+incorporada. Nao precisa de abrir o Excel para filtrar nada, o Robo 
+faz os calculos internamente e devolve a arte perfeita.
+
+COMO USAR PELA PRIMEIRA VEZ:
+1. De duplo clique em "1_Criar_Supremo.bat".
+2. Ele vai instalar os modulos matematicos (Pandas) e o manipulador 
+   de PDF (PyMuPDF) e criar a pasta "dist".
+3. Aceda a pasta "dist" e abra o seu "Robo_Supremo_Filtros.exe".
+
+O FLUXO DE TRABALHO (O QUE VOCE VE NO ECRA):
+------------------------------------------------------
+PASSO 1: Selecione o PDF Molde da sua lamina.
+PASSO 2: Selecione o Excel gigante (Base de Dados). 
+         > Quando carregar o Excel, o Robo vai ler todas as linhas da 
+           aba "BASE_V_REDE" e ira descobrir automaticamente quais 
+           sao todos os modelos de carros que existem na sua tabela.
+
+PASSO 3: Mapeamento (Faz-se apenas uma vez)
+Clique no botao para abrir as Regras. Em vez de dizer as celulas (como antes),
+agora voce ensina a inteligencia:
+- "No PDF esta escrito o preco 1334 35"
+- "Eu quero que voce substitua pela soma de todos os valores da REV01"
+- "Com fundo Branco e texto Preto"
+
+PASSO 4: Gerar
+Na aplicacao, no campo de selecao (Dropdown), escolha o carro 
+(Ex: "PAJERO SPORT HPE"). Clique em GERAR.
+O Robo ira cruzar todos os dados da Base, somar o total da Revisao 1, 
+Revisao 2, etc, para aquele carro exato e carimbar esses totais finais 
+em cima do Molde original em PDF, entregando-lhe o ficheiro pronto para 
+ser guardado!
