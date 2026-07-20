@@ -1,19 +1,39 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("assets/fonts/BCDIEE_Montserrat.ttf") format("truetype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("assets/fonts/BCDGEE_Montserrat_Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("assets/fonts/BCDEEE_Montserrat_Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("assets/fonts/BCDHEE_Montserrat_ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+}
+
 * { box-sizing: border-box; }
 
 html, body {
   margin: 0;
   padding: 0;
   width: 1300px;
-  font-family: "Segoe UI", "Arial", "Helvetica Neue", sans-serif;
+  font-family: "Montserrat", "Arial", "Helvetica Neue", sans-serif;
   background: #ffffff;
-  color: #231f20;
+  color: #000000;
 }
 
 :root {
-  --vermelho: #ff0800;
+  --vermelho: #ff0000;
   --vermelho-escuro: #c31617;
-  --cinza-label: #7a7a7a;
-  --cinza-avista: #9a9a9a;
+  --cinza-label: #7e7e7e;
   --zebra: #f2f2f2;
 }
 
@@ -21,7 +41,7 @@ html, body {
   position: relative;
   display: flex;
   width: 1300px;
-  padding: 14px 16px 116px 0;
+  padding: 14px 16px 130px 0;
   gap: 6px;
 }
 
@@ -51,12 +71,20 @@ html, body {
   left: 4px;
   right: 4px;
   color: #fff;
-  font-weight: 700;
-  font-size: 10.5px;
-  line-height: 1.35;
   text-align: center;
-  letter-spacing: 0.1px;
+}
+.sidebar .rodape-texto .linha1 {
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.2px;
   white-space: nowrap;
+}
+.sidebar .rodape-texto .linha2 {
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  margin-top: 2px;
 }
 
 /* ---------- cabecalho com logo ---------- */
@@ -89,7 +117,7 @@ html, body {
 .titulo-revisao {
   font-size: 8.5px;
   font-weight: 700;
-  color: var(--cinza-label);
+  color: var(--vermelho);
   text-align: center;
   align-self: end;
   padding-bottom: 3px;
@@ -101,14 +129,14 @@ html, body {
   align-items: center;
   justify-content: center;
   color: var(--vermelho);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 13px;
 }
 
 .titulo {
   background: #f7f7f7;
   color: var(--vermelho);
-  font-weight: 800;
+  font-weight: 700;
   text-align: center;
   font-size: 11px;
   line-height: 1.25;
@@ -148,14 +176,14 @@ html, body {
 .valor3x {
   font-weight: 800;
   font-size: 11px;
-  color: #111;
+  color: #000000;
   white-space: nowrap;
 }
-.valor3x b { color: var(--vermelho); }
+.valor3x b { color: var(--vermelho); font-weight: 800; }
 .avista {
   font-size: 8.5px;
-  color: var(--cinza-avista);
-  font-style: italic;
+  font-weight: 500;
+  color: var(--cinza-label);
   white-space: nowrap;
 }
 
@@ -163,7 +191,7 @@ html, body {
 .rodape-logos {
   position: absolute;
   right: 14px;
-  bottom: 10px;
+  bottom: 46px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -171,3 +199,28 @@ html, body {
 }
 .rodape-logos img.mitsubishi { height: 46px; }
 .rodape-logos img.shell { height: 50px; }
+
+/* ---------- selo IBAMA + texto vertical ---------- */
+.selo-ibama {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  height: 150px;
+}
+.selo-ibama img { height: 100%; display: block; }
+
+/* ---------- rodape legal ---------- */
+.rodape-legal {
+  position: absolute;
+  left: 92px;
+  right: 14px;
+  bottom: 6px;
+  display: flex;
+  gap: 24px;
+  font-size: 6px;
+  line-height: 1.5;
+  color: #000000;
+}
+.rodape-legal .coluna { flex: 1; }
+.rodape-legal b { font-weight: 700; }
+.rodape-legal span { font-weight: 500; }

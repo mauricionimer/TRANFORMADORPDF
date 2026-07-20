@@ -8,12 +8,20 @@
 <body>
 <div class="pagina">
   <div class="sidebar">
-    <div class="rodape-texto">MIT REVISÃO<br>PROGRAMADA</div>
+    <div class="rodape-texto">
+      <div class="linha1">MIT REVISÃO</div>
+      <div class="linha2">PROGRAMADA</div>
+      {% if edicao %}<div class="linha2">{{ edicao }}</div>{% endif %}
+    </div>
   </div>
 
   <div class="cabecalho">
     <img src="{{ logo_mit }}" alt="MIT Serviços">
   </div>
+
+  {% if selo_ibama %}
+  <div class="selo-ibama"><img src="{{ selo_ibama }}" alt=""></div>
+  {% endif %}
 
   <div class="conteudo">
     {% for grupo in grupos %}
@@ -44,6 +52,13 @@
     <img class="mitsubishi" src="{{ logo_mitsubishi }}" alt="Mitsubishi Motors">
     <img class="shell" src="{{ logo_shell }}" alt="Shell">
   </div>
+
+  {% if texto_legal %}
+  <div class="rodape-legal">
+    <div class="coluna"><b>Lubrificantes e fluidos inclusos. Valores para pagamento à vista.</b> <span>{{ texto_legal }}</span></div>
+    <div class="coluna"><b>Lubrificantes e fluidos inclusos. Valores para pagamento à vista.</b> <span>{{ texto_legal }}</span></div>
+  </div>
+  {% endif %}
 </div>
 </body>
 </html>

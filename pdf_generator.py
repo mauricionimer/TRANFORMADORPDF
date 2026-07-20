@@ -4,9 +4,11 @@ edicao (BASE_V_REDE) e do layout fixo definido em layout_config.py.
 from __future__ import annotations
 
 import os
+import re
 import sys
 
 import jinja2
+import openpyxl
 from playwright.sync_api import sync_playwright
 
 import data_engine as de
@@ -15,6 +17,30 @@ from formatting import fmt_brl
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PAGINA_LARGURA_PX = 1300
+
+TEXTO_LEGAL = (
+    "Preço relativo às peças e mão de obra necessária para a realização da revisão, já incluídos "
+    "óleos e fluidos, cuja substituição tenha sido indicada no plano de revisões periódicas do "
+    "veículo. Valores baseados em condições normais de uso. Maiores detalhes, vide Livrete de "
+    "Bordo. Preços e condições podem ser alterados sem aviso prévio pela Montadora. As revisões "
+    "do Lancer e ASX presentes neste material não se aplicam a veículos blindados. Para estes e "
+    "outros modelos consulte o Supervisor de Serviços. Consulte sempre o Concessionário "
+    "Mitsubishi para mais informações."
+)
+
+
+def extrair_edicao(caminho_excel: str) -> str:
+    """Le o numero da edicao a partir do titulo da aba RPM (ex: 'MITSERVIÇOS
+    44ª Edição' -> '44ª EDIÇÃO'). Retorna string vazia se nao encontrar."""
+    try:
+        wb = openpyxl.load_workbook(caminho_excel, data_only=True, read_only=True)
+        titulo = wb["RPM"]["B1"].value or ""
+        m = re.search(r"(\d+)\s*ª", str(titulo))
+        if m:
+            return f"{m.group(1)}ª EDIÇÃO"
+    except Exception:
+        pass
+    return ""
 
 
 def montar_dados(caminho_excel: str) -> list[dict]:
@@ -66,6 +92,9 @@ def gerar_pdf(caminho_excel: str, caminho_pdf_saida: str) -> str:
         logo_mit="assets/logos/mit_servicos.png",
         logo_mitsubishi="assets/logos/mitsubishi_motors.png",
         logo_shell="assets/logos/shell.png",
+        selo_ibama="assets/logos/ibama_vertical.png",
+        edicao=extrair_edicao(caminho_excel),
+        texto_legal=TEXTO_LEGAL,
     )
 
     html_path = os.path.join(BASE_DIR, "_ultima_renderizacao.html")
