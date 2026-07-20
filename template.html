@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>MIT Revisão Programada</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="pagina">
+  <div class="sidebar">
+    <div class="rodape-texto">MIT REVISÃO<br>PROGRAMADA</div>
+  </div>
+
+  <div class="cabecalho">
+    <img src="{{ logo_mit }}" alt="MIT Serviços">
+  </div>
+
+  <div class="conteudo">
+    {% for grupo in grupos %}
+    <div class="grupo" style="grid-template-columns: 46px repeat({{ grupo.total_colunas }}, 1fr);">
+      <div class="titulo-revisao" style="grid-row:1; grid-column:1;">REVISÃO</div>
+      <div class="revisao-spacer" style="grid-row:2; grid-column:1;"></div>
+      {% for n in range(10) %}
+      <div class="num" style="grid-row:{{ n + 3 }}; grid-column:1;">{{ revisoes_labels[n] }}</div>
+      {% endfor %}
+
+      {% for tabela in grupo.tabelas %}
+      <div class="titulo" style="grid-row:1; grid-column:{{ tabela.col_inicio }} / span {{ tabela.span }};">{{ tabela.titulo }}</div>
+        {% for coluna in tabela.colunas %}
+        <div class="rotulo" style="grid-row:2; grid-column:{{ coluna.col_index }};">{{ coluna.rotulo }}</div>
+          {% for n in range(10) %}
+          <div class="celula {{ 'branca' if n % 2 == 1 else 'cinza' }}" style="grid-row:{{ n + 3 }}; grid-column:{{ coluna.col_index }};">
+            <div class="valor3x"><b>3X</b> {{ coluna.linhas[n].valor3x }}</div>
+            <div class="avista">à vista: {{ coluna.linhas[n].avista }}</div>
+          </div>
+          {% endfor %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="rodape-logos">
+    <img class="mitsubishi" src="{{ logo_mitsubishi }}" alt="Mitsubishi Motors">
+    <img class="shell" src="{{ logo_shell }}" alt="Shell">
+  </div>
+</div>
+</body>
+</html>
