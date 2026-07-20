@@ -79,6 +79,9 @@ def gerar_pdf(caminho_excel: str, caminho_pdf_saida: str) -> str:
         page = browser.new_page(viewport={"width": PAGINA_LARGURA_PX, "height": 800})
         page.goto(file_url)
         altura = page.evaluate("document.querySelector('.pagina').scrollHeight")
+        # pequena folga evita que arredondamento px->pt do Chromium empurre
+        # uma fatia do conteudo para uma 2a pagina em branco.
+        altura += 6
         page.pdf(
             path=caminho_pdf_saida,
             width=f"{PAGINA_LARGURA_PX}px",
