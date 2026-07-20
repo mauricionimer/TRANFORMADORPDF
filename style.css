@@ -170,8 +170,7 @@ html, body {
   line-height: 1.2;
   border-top: 1px solid #e6e6e6;
 }
-.celula.cinza { background: var(--zebra); }
-.celula.branca { background: #ffffff; }
+.celula.cinza, .celula.branca { background: #ffffff; }
 
 .valor3x {
   font-weight: 800;
